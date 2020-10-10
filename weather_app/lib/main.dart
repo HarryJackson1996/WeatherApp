@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: Provider.of<ThemeProvider>(context).themeData,
+      theme: Provider.of<ThemeProvider>(context, listen: true).themeData,
       title: 'Weather Application',
       onGenerateRoute: Router.generateRoute,
       initialRoute: homeRoute,     
