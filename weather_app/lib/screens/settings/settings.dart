@@ -58,25 +58,53 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ThemeProvider.of(context).themeData.backgroundColor,
+      appBar: AppBar(
+        backgroundColor: ThemeProvider.of(context).themeData.backgroundColor,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: ThemeProvider.of(context).themeData.primaryColor,
+          ),
+          onPressed: () {
+            if(Navigator.canPop(context)) {
+              Navigator.pop(context);
+            } 
+          },
+        ),
+      ),
       body: ListView.builder(      
         itemCount: 3,
         itemBuilder: (context, index) {
-          return RadioListTile(
-            value: index,
-            groupValue: _value,
-            onChanged: (index) {
-              setState(() {
-                _value = index;
-                if(_value == 0) {
-                  Provider.of<ThemeProvider>(context, listen: false).setTheme(ThemeKey.LIGHT); 
-                } else if(_value == 1) {
-                  Provider.of<ThemeProvider>(context, listen: false).setTheme(ThemeKey.DARK); 
-                } else {
-                  Provider.of<ThemeProvider>(context, listen: false).setTheme(ThemeKey.CUSTOM); 
-                }
-              });
-            },
-            title: Text(getTextLabel(index)),
+          return Theme(
+            data: Theme.of(context).copyWith(
+              unselectedWidgetColor: ThemeProvider.of(context).themeData.primaryColor,
+              disabledColor: Colors.blue
+            ),
+            child: RadioListTile(
+              activeColor: Colors.red,
+              value: index,
+              groupValue: _value,
+              onChanged: (index) {
+                setState(() {
+                  _value = index;
+                  if(_value == 0) {
+                    Provider.of<ThemeProvider>(context, listen: false).setTheme(ThemeKey.LIGHT); 
+                  } else if(_value == 1) {
+                    Provider.of<ThemeProvider>(context, listen: false).setTheme(ThemeKey.DARK); 
+                  } else {
+                    Provider.of<ThemeProvider>(context, listen: false).setTheme(ThemeKey.CUSTOM); 
+                  }
+                });
+              },
+              title: Text(
+                getTextLabel(index), 
+                style: TextStyle(
+                  color: ThemeProvider.of(context).themeData.primaryColor
+                ),
+              ),
+            ),
           );
         },
       ),

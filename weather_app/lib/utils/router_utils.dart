@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/consts/routes.dart';
 import 'package:weather_app/screens/home/home.dart';
 import 'package:weather_app/screens/settings/settings.dart';
+import 'package:weather_app/screens/search/search_screen.dart';
 
 class Router {
   
@@ -12,6 +13,9 @@ class Router {
         break;
       case settingsRoute:
         return MaterialPageRoute(builder: (_) => SettingsScreen());
+        break;
+      case searchRoute:
+        return MaterialPageRoute(builder: (_) => SearchScreen());
         break;
       default:
         return MaterialPageRoute(

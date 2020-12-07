@@ -22,15 +22,18 @@ class MyThemeData {
     }
   }   
 
-  static final darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: Colors.black
-  );
-
   static final lightTheme = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Colors.white
+    primaryColor: Colors.white,
+    backgroundColor: Color.fromRGBO(0, 34, 69, 1)
   );
+
+  static final darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: Colors.white,
+    backgroundColor: Colors.black
+  );
+
   
   static final greenTheme = ThemeData(
     brightness: Brightness.light,

@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:weather_app/providers/theme_provider.dart';
-import 'package:weather_app/utils/router_utils.dart';
+import 'package:weather_app/utils/router_utils.dart' as MyRouter;
 import 'consts/routes.dart';
 import 'models/theme_models/themes.dart';
 
@@ -12,6 +12,9 @@ import 'models/theme_models/themes.dart';
 void main() async {  
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  statusBarColor: Colors.transparent
+  ));
   await Hive.initFlutter();
   Hive.registerAdapter(ThemeKeyAdapter());
  
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context, listen: true).themeData,
       title: 'Weather Application',
-      onGenerateRoute: Router.generateRoute,
+      onGenerateRoute: MyRouter.Router.generateRoute,
       initialRoute: homeRoute,     
     );
   }
